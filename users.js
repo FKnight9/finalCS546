@@ -31,7 +31,7 @@ module.exports = {
     async deleteUser(id) {
         if (!id) throw "ID is invalid";
 
-        const userCollection = await todoItems();
+        const userCollection = await users();
         const deletedUser = await userCollection.removeOne({_id: id});
         if (deletedUser.deletedCount === 0) throw "Failed to remove this user with id of ${id}";
     },
