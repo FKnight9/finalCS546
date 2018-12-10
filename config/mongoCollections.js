@@ -7,7 +7,7 @@ const getCollectionFn = collection => {
       const db = await dbConnection();
       _col = await db.collection(collection);
     }
-    
+
     return _col;
   };
 };
@@ -15,5 +15,6 @@ const getCollectionFn = collection => {
 module.exports = {
   users: getCollectionFn("users"),
   courses: getCollectionFn("courses"),
-  comments: getCollectionFn("comments")
+  comments: getCollectionFn("comments"),
+  sessions: getCollectionFn("sessions")
 };

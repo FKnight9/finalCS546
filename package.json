@@ -4,6 +4,7 @@
   "description": "Final project for CS546 similar to a RateMyProf idea",
   "main": "app.js",
   "scripts": {
+    "prestart": "mongod --dbpath mongodb &",
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,8 +19,12 @@
   },
   "homepage": "https://github.com/FKnight9/finalCS546#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
-    "guid": "0.0.12",
-    "mongodb": "^3.1.10"
+    "express-handlebars": "^3.0.0",
+    "uuid": "^3.3.2",
+    "mongodb": "^3.0.2"
   }
 }

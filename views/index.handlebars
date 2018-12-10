@@ -1,0 +1,27 @@
+<article>
+  <header>
+    <h2>Login</h2>
+  </header>
+  {{#if error}}
+    <br>
+    <div id="login-error" class="error">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      Error: {{error}}
+    </div>
+  {{/if}}
+  <br>
+  <form id="login-form" action="/login" method="post">
+    <table class="login">
+      <tr>
+        <td><label for="username">Username:</label></td>
+        <td><input type="text" name="username" id="username"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><label for="password">Password:</label></td>
+        <td><input type="password" name="password" id="password"></td>
+        <td><input type="submit" value="Submit"></td>
+      </tr>
+    </table>
+  </form>
+</article>

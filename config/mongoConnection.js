@@ -1,6 +1,6 @@
 const MongoClient = require("mongodb").MongoClient;
-const settings = require("./settings");
-const mongoConfig = settings.mongoConfig;
+const config = require("./config");
+const mongoConfig = config.mongoConfig;
 
 let _connection = undefined;
 let _db = undefined;
