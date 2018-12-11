@@ -1,5 +1,6 @@
 # Rate Stevens - CS 546 Final Project
 *By Austin Rocha, Faris Ibrahim, Oscar Tavara, and Tarik Kdiry*
+
 Rate Stevens is a website which allows students that attend Stevens Institute of Technology to rate their courses and see the reviews of their fellow peers.
 ## Before Installing
 Please make sure you have downloaded and installed MongoDB, NodeJS and npm to your computer.
