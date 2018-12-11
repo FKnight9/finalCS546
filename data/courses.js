@@ -1,6 +1,7 @@
 const mongoCollections = require("../config/mongoCollections");
 const courses = mongoCollections.courses;
 
+const commentsData = require("./comments");
 const uuidv4 = require('uuid/v4');
 
 async function createCourse(courseCode, courseName) {
@@ -18,13 +19,22 @@ async function createCourse(courseCode, courseName) {
     const insertedCourse = await courseCollection.insertOne(newCourse);
     if (insertedCourse.insertedCount === 0) throw "Could not add course";
 
-    const course = await this.getCourse(insertedCourse.insertedId);
+    const course = await this.getCourseByID(newCourse._id);
     return course;
 }
 
 // Delete a course given ID
 async function deleteCourse(id) {
     if ((!id) || (typeof id !== "string")) throw "ID is invalid";
+
+    const courseComments = await commentsData.getCommentsByCourseID(id)
+
+    for (var i = 0; i < courseComments.length; i++) {
+      var user = await this.getUserByID(String(courseComments[i].userID))
+      var sessionID = String(await sessionsData.newSession(user.username))
+      await commentsData.deleteComment(sessionID, String(courseComments[i]._id))
+      await sessionsData.expireSession(sessionID)
+    }
 
     const courseCollection = await courses();
     const deletedCourse = await courseCollection.removeOne({_id: id});
@@ -46,7 +56,16 @@ async function updateCourse(id, courseCode, courseName) {
 
     if (updatedCourse.modifiedCount === 0) throw "Failed to update course";
 
-    return await this.getCourse(id);
+    return await this.getCourseByID(id);
+}
+
+// Return all courses
+async function getCourses() {
+
+    const courseCollection = await courses();
+    const foundCourses = await courseCollection.find({}, {_id: 1, courseCode: 1, courseName: 1});
+
+    return foundCourses;
 }
 
 // Find a course by id

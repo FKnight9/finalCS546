@@ -1,16 +1,21 @@
 const mongoCollections = require("../config/mongoCollections");
+const users = mongoCollections.users;
 const sessions = mongoCollections.sessions;
 
 const uuidv4 = require('uuid/v4');
-const usersData = require("./users");
 
 async function getSession(id) {
   if ((!id) || (typeof id !== "string")) throw "ID is invalid";
 
   let sessionsCollection = await sessions();
   let session = await sessionsCollection.findOne({_id: id});
-  let user = usersData.getUserByUsername(session.username)
-  return user;
+
+  const userCollection = await users();
+  const foundUser = await userCollection.findOne({username: session.username});
+
+  if (foundUser === null) return undefined;
+
+  return foundUser;
 }
 
 async function newSession(username) {

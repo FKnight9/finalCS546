@@ -1,6 +1,8 @@
 const mongoCollections = require("../config/mongoCollections");
 const users = mongoCollections.users;
 
+const commentsData = require("./comments");
+const sessionsData = require("./sessions");
 const uuidv4 = require('uuid/v4');
 const bcrypt = require("bcryptjs");
 const saltRounds = 16;
@@ -70,6 +72,22 @@ async function createUser(username, firstName, lastName, password) {
 async function deleteUser(id) {
     if ((!id) || (typeof id !== "string")) throw "ID is invalid";
 
+    const userComments = await commentsData.getCommentsByUserID(id);
+    const user = await this.getUserByID(id);
+    var sessionID = undefined;
+
+    if (userComments.length > 0) {
+      var sessionID = String(await sessionsData.newSession(user.username));
+    }
+
+    for (var i = 0; i < userComments.length; i++) {
+      await commentsData.deleteComment(sessionID, String(userComments[i]._id));
+    }
+
+    if (sessionID) {
+      await sessionsData.expireSession(sessionID);
+    }
+
     const userCollection = await users();
     const deletedUser = await userCollection.removeOne({_id: id});
     if (deletedUser.deletedCount === 0) throw "Failed to remove this user with id of ${id}";
@@ -84,7 +102,7 @@ async function updateUser(id, firstName, lastName) {
     firstName = firstName.trim();
     lastName = lastName.trim();
 
-    let user = await this.getUser(id);
+    let user = await this.getUserByID(id);
     user.firstName = firstName;
     user.lastName = lastName;
 
@@ -93,7 +111,7 @@ async function updateUser(id, firstName, lastName) {
 
     if (updatedUser.modifiedCount === 0) throw "Failed to update user";
 
-    return await this.getUser(id);
+    return await this.getUserByID(id);
 }
 
 // Checking user credentials
