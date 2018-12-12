@@ -10,7 +10,7 @@
     </div>
   {{/if}}
   <br>
-  <form id="course-form" action="/course" method="post">
+  <form onsubmit="return courseValidate(this);" id="course-form" action="/course" method="post">
     <table class="course">
       <tr>
         <td><label for="courseName">Course Name:</label></td>
@@ -20,7 +20,7 @@
       <tr>
         <td><label for="courseCode">Course Code:</label></td>
         <td><input type="courseCode" name="courseCode" id="courseCode"></td>
-        <td><input type="submit" value="Submit"></td>
+        <td><button type="submit" form="course-form" value="Submit">Submit</button></td>
       </tr>
     </table>
   </form>

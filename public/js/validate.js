@@ -42,6 +42,6 @@ function registerValidate(form) {
 	return True;
 }
 
-function courseValidate() {
-
+function courseValidate(form) {
+	return True;
 }
