@@ -10,7 +10,7 @@
     </div>
   {{/if}}
   <br>
-  <form id="register-form" action="/register" method="post">
+  <form onsubmit="return registerValidate(this);" id="register-form" action="/register" method="post">
     <table class="register">
       <tr>
         <td><label for="firstName">First Name:</label></td>
@@ -30,7 +30,12 @@
       <tr>
         <td><label for="password">Password:</label></td>
         <td><input type="password" name="password" id="password"></td>
-        <td><input type="submit" value="Submit"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><label for="passwordConfirm">Password Confirm:</label></td>
+        <td><input type="password" name="passwordConfirm" id="passwordConfirm"></td>
+        <td><button type="submit" form="register-form" value="Submit">Submit</button></td>
       </tr>
     </table>
   </form>

@@ -6,7 +6,7 @@ const sessions = data.sessions;
 
 const main = async () => {
     let username = 'admin';
-    let pass = 'PASSWORD';
+    let pass = 'Password12345';
 
     var userExists = await users.getUserByUsername(username);
     if (userExists) {
