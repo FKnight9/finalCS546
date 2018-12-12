@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>RateMyCourse</title>
-    <!--<link rel="stylesheet" href="/css/materialize.css">-->
-    <link rel="stylesheet" href="/css/site.css">
-  </head>
-  <body>
-    <header>
-      <h1>{{title}}</h1>
-    </header>
-    <br>
-    <main>
-      {{{body}}}
-    </main>
-    <footer>
-      <!--<script src="/js/materialize.js"></script>-->
-      <script src="/js/validate.js"></script>
-    </footer>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>RateMyCourse</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="/js/validate.js"></script>
+  <script src="/js/init.js"></script>
+</head>
+<body>
+  <nav class="orange darken-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">{{title}}</a>
+    </div>
+  </nav>
+  <main>
+    {{{body}}}
+  </main>
   </body>
 </html>

@@ -1,27 +1,36 @@
 <article>
+  <br>
   <header>
-    <h2>Login</h2>
+    <h3 class="center-align">Login</h3>
   </header>
   {{#if error}}
-    <br>
-    <div id="login-error" class="error">
-      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-      Error: {{error}}
-    </div>
+    <script>
+        $(document).ready(function(){
+           M.toast({html: '{{error}}'})
+        });
+    </script>
   {{/if}}
   <br>
-  <form id="login-form" action="/login" method="post">
-    <table class="login">
-      <tr>
-        <td><label for="username">Username:</label></td>
-        <td><input type="text" name="username" id="username"></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><label for="password">Password:</label></td>
-        <td><input type="password" name="password" id="password"></td>
-        <td><input type="submit" value="Submit"></td>
-      </tr>
-    </table>
-  </form>
+  <div class="row valign-wrapper center-align">
+   <form class="col s8" id="login-form" action="/login" method="post">
+     <div class="row">
+       <div class="input-field col s6">
+         <input type="text" name="username" id="username">
+         <label for="username">Username</label>
+       </div>
+     </div>
+     <div class="row">
+       <div class="input-field col s6">
+         <input type="password" name="password" id="password">
+         <label for="password">Password</label>
+       </div>
+     </div>
+     <button class="btn waves-effect waves-light orange darken-3" form="login-form" type="submit" name="action" value="Submit">Submit</button>
+   </form>
+ </div>
+ <div class="row valign-wrapper center-align">
+   <div class="row">
+     <button class="btn waves-effect waves-light orange darken-4" onclick="location.href='/register';">Register</button>
+   </div>
+ </div>
 </article>

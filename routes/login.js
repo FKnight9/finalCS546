@@ -3,6 +3,10 @@ const router = express.Router();
 const userData = require("../data/users");
 const sessionsData = require("../data/sessions");
 
+router.get("/", async (req, res) => {
+	res.redirect("/");
+});
+
 router.post("/", async (req, res) => {
 	const username = req.body.username;
 	const password = req.body.password;
@@ -20,11 +24,11 @@ router.post("/", async (req, res) => {
 		var sessionID = await sessionsData.newSession(username);
 
 		res.cookie("AuthCookie", sessionID);
-		res.redirect("/private");
+		res.redirect("/courses");
 
 	} else {
 		var data = {
-			title: "A Simple User Login System",
+			title: "RateMyCourse",
 			error: error_message
 		}
 

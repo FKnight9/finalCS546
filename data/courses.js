@@ -61,10 +61,8 @@ async function updateCourse(id, courseCode, courseName) {
 
 // Return all courses
 async function getCourses() {
-
     const courseCollection = await courses();
-    const foundCourses = await courseCollection.find({}, {_id: 1, courseCode: 1, courseName: 1});
-
+    const foundCourses = await courseCollection.find({}, {_id: 1, courseCode: 1, courseName: 1}).toArray();
     return foundCourses;
 }
 
@@ -75,7 +73,7 @@ async function getCourseByID(id) {
     const courseCollection = await courses();
     const foundCourse = await courseCollection.findOne({_id: id});
 
-    if (foundCourse === null) throw "No course exists with that ID";
+    if (foundCourse === null) return undefined;
 
     return foundCourse;
 }
@@ -87,7 +85,7 @@ async function getCourseByCode(courseCode) {
     const courseCollection = await courses();
     const foundCourse = await courseCollection.findOne({courseCode: courseCode});
 
-    if (foundCourse === null) throw "No course exists with that Course Code";
+    if (foundCourse === null) return undefined;
 
     return foundCourse;
 }
@@ -99,7 +97,7 @@ async function getCourseByName(courseName) {
     const courseCollection = await courses();
     const foundCourse = await courseCollection.findOne({courseName: courseName});
 
-    if (foundCourse === null) throw "No course exists with that Course Name";
+    if (foundCourse === null) return undefined;
 
     return foundCourse;
 }
@@ -108,6 +106,7 @@ module.exports = {
   createCourse,
   deleteCourse,
   updateCourse,
+  getCourses,
   getCourseByID,
   getCourseByCode,
   getCourseByName

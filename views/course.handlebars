@@ -1,27 +1,39 @@
 <article>
+  <br>
   <header>
-    <h2>Add New Course</h2>
+    <h3 class="center-align">Add New Comment</h3>
   </header>
   {{#if error}}
-    <br>
-    <div id="course-error" class="error">
-      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-      Error: {{error}}
-    </div>
+    <script>
+        $(document).ready(function(){
+           M.toast({html: '{{error}}'})
+        });
+    </script>
   {{/if}}
   <br>
-  <form onsubmit="return courseValidate(this);" id="course-form" action="/course" method="post">
-    <table class="course">
-      <tr>
-        <td><label for="courseName">Course Name:</label></td>
-        <td><input type="text" name="courseName" id="courseName"></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><label for="courseCode">Course Code:</label></td>
-        <td><input type="courseCode" name="courseCode" id="courseCode"></td>
-        <td><button type="submit" form="course-form" value="Submit">Submit</button></td>
-      </tr>
-    </table>
-  </form>
+  <div class="row valign-wrapper center-align">
+   <form class="col s8" id="comment-form" action="/courses/{{course.courseCode}}" method="post">
+     <div class="row">
+       <div class="input-field col s6">
+         <textarea name="comment" id="comment" class="materialize-textarea"></textarea>
+         <label for="comment">{{user.username}}'s comment</label>
+       </div>
+     </div>
+     <button class="btn waves-effect waves-light orange darken-3" form="comment-form" type="submit" name="action" value="Submit">Submit</button>
+   </form>
+ </div>
+
+ <div class="row valign-wrapper center-align">
+   <ul class="row collection">
+     {{#each comments}}
+      <li class="collection-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{this.userID}}: {{this.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+     {{/each}}
+   </ul>
+ </div>
+
+ <div class="row valign-wrapper center-align">
+   <div class="row">
+     <button class="btn waves-effect waves-light orange darken-4" onclick="location.href='/logout';">Logout</button>
+   </div>
+ </div>
 </article>

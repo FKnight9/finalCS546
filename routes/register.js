@@ -14,10 +14,10 @@ router.get("/", async (req, res) => {
 	}
 
 	if(auth) {
-		res.redirect("/private");
+		res.redirect("/courses");
 	} else {
 		var data = {
-			title: "A Simple User Register System"
+			title: "RateMyCourse"
 		};
 
 		res.render('register', data);
@@ -31,7 +31,7 @@ router.post("/", async (req, res) => {
 	var user = await userData.createUser(username, req.body.firstName, req.body.lastName, password);
 
 	var data = {
-		title: "A Simple User Register System",
+		title: "RateMyCourse",
 		error: "Issue registering user, please try again."
 	}
 
@@ -46,7 +46,7 @@ router.post("/", async (req, res) => {
 			var sessionID = await sessionsData.newSession(username);
 
 			res.cookie("AuthCookie", sessionID);
-			res.redirect("/private");
+			res.redirect("/courses");
 		} else {
 			res.render("register", data);
 		}

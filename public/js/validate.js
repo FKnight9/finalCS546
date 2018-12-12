@@ -1,7 +1,7 @@
 function registerValidate(form) {
 	var firstName = form.firstName.value.trim();
 	if (firstName.length < 1) {
-		alert("Firstname must be atleast one character, please try again.");
+		M.toast({html: "Firstname must be atleast one character, please try again."})
 		event.preventDefault();
 		form.firstName.focus();
 		return False;
@@ -9,7 +9,7 @@ function registerValidate(form) {
 
 	var lastName = form.lastName.value.trim();
 	if (lastName.length < 1) {
-		alert("Lastname must be atleast one character, please try again.");
+		M.toast({html: "Lastname must be atleast one character, please try again."})
 		event.preventDefault();
 		form.lastName.focus();
 		return False;
@@ -18,7 +18,7 @@ function registerValidate(form) {
 
 	var username = form.username.value.trim();
 	if (username.length < 4) {
-		alert("Username must be atleast 4 characters long, please try again.");
+		M.toast({html: "Username must be atleast 4 characters long, please try again."})
 		event.preventDefault();
 		form.username.focus();
 		return False;
@@ -28,12 +28,12 @@ function registerValidate(form) {
 	var passwordConfirm = form.passwordConfirm.value.trim();
 
 	if (password !== passwordConfirm) {
-		alert("Password does not match, please try again.");
+		M.toast({html: "Password does not match, please try again."})
 		event.preventDefault();
 		form.password.focus();
 		return False;
 	} else if (!(/(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[a-z])/.test(password)) || (password.length < 7)) {
-		alert("Password must atleast 7 characters and have atleast one uppercase character, one lowercase character, and one number.");
+		M.toast({html: "Password must atleast 7 characters and have atleast one uppercase character, one lowercase character, and one number."})
 		event.preventDefault();
 		form.password.focus();
 		return False;

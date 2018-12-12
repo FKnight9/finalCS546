@@ -14,7 +14,7 @@ async function getUserByID(id) {
     const userCollection = await users();
     const foundUser = await userCollection.findOne({_id: id});
 
-    if (foundUser === null) return undefined;//throw "No user exists with that ID";
+    if (foundUser === null) return undefined;
 
     return foundUser;
 }
@@ -27,7 +27,7 @@ async function getUserByUsername(username) {
     const userCollection = await users();
     const foundUser = await userCollection.findOne({username: username});
 
-    if (foundUser === null) return undefined;//throw "No user exists with that username";
+    if (foundUser === null) return undefined;
 
     return foundUser;
 }

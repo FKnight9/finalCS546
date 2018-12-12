@@ -62,8 +62,6 @@ async function getCommentsByCourseID(courseID) {
     const commentCollection = await comments();
     const foundComment = await commentCollection.find({courseID: courseID}).toArray();
 
-    //if (foundComment.length === 0) throw "No comments exists associated with that course";
-
     return foundComment;
 }
 

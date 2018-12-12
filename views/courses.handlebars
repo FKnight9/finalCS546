@@ -1,0 +1,45 @@
+<article>
+  <br>
+  <header>
+    <h3 class="center-align">Add New Course</h3>
+  </header>
+  {{#if error}}
+    <script>
+        $(document).ready(function(){
+           M.toast({html: '{{error}}'})
+        });
+    </script>
+  {{/if}}
+  <br>
+  <div class="row valign-wrapper center-align">
+   <form class="col s8" onsubmit="return courseValidate(this);" id="course-form" action="/courses" method="post">
+     <div class="row">
+       <div class="input-field col s6">
+         <input type="text" name="courseCode" id="courseCode">
+         <label for="courseCode">Course Code</label>
+       </div>
+     </div>
+     <div class="row">
+       <div class="input-field col s6">
+         <input type="text" name="courseName" id="courseName">
+         <label for="courseName">Course Name</label>
+       </div>
+     </div>
+     <button class="btn waves-effect waves-light orange darken-3" form="course-form" type="submit" name="action" value="Submit">Submit</button>
+   </form>
+ </div>
+
+ <div class="row valign-wrapper center-align">
+   <div class="row collection">
+     {{#each courses}}
+      <a href="/courses/{{this.courseCode}}" class="collection-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[{{this.courseCode}}] {{this.courseName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+     {{/each}}
+   </div>
+ </div>
+
+ <div class="row valign-wrapper center-align">
+   <div class="row">
+     <button class="btn waves-effect waves-light orange darken-4" onclick="location.href='/logout';">Logout</button>
+   </div>
+ </div>
+</article>

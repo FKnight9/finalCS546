@@ -12,10 +12,10 @@ router.get("/", async (req, res) => {
 	}
 
 	if(auth) {
-		res.redirect("/private");
+		res.redirect("/courses");
 	} else {
 		var data = {
-			title: "Rate My Courses"
+			title: "RateMyCourse"
 		};
 
 		res.render('index', data);
