@@ -1,7 +1,7 @@
 function registerValidate(form) {
 	var firstName = form.firstName.value.trim();
 	if (firstName.length < 1) {
-		M.toast({html: "Firstname must be atleast one character, please try again."})
+		M.toast({html: "Firstname must be at least one character, please try again."})
 		event.preventDefault();
 		form.firstName.focus();
 		return False;
@@ -9,7 +9,7 @@ function registerValidate(form) {
 
 	var lastName = form.lastName.value.trim();
 	if (lastName.length < 1) {
-		M.toast({html: "Lastname must be atleast one character, please try again."})
+		M.toast({html: "Lastname must be at least one character, please try again."})
 		event.preventDefault();
 		form.lastName.focus();
 		return False;
@@ -18,7 +18,7 @@ function registerValidate(form) {
 
 	var username = form.username.value.trim();
 	if (username.length < 4) {
-		M.toast({html: "Username must be atleast 4 characters long, please try again."})
+		M.toast({html: "Username must be at least 4 characters long, please try again."})
 		event.preventDefault();
 		form.username.focus();
 		return False;
@@ -33,7 +33,7 @@ function registerValidate(form) {
 		form.password.focus();
 		return False;
 	} else if (!(/(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[a-z])/.test(password)) || (password.length < 7)) {
-		M.toast({html: "Password must atleast 7 characters long, have atleast one uppercase character, one lowercase character, and one number."})
+		M.toast({html: "Password must be at least 7 characters long, have at least one uppercase character, one lowercase character, and one number."})
 		event.preventDefault();
 		form.password.focus();
 		return False;
@@ -45,7 +45,7 @@ function registerValidate(form) {
 function courseValidate(form) {
 	var courseCode = form.courseCode.value.trim().toUpperCase();
 	if (!(/[A-Z]{2,}[0-9]{3}/.test(courseCode)) || (courseCode.length < 5)) {
-		M.toast({html: "Course code must atleast 5 characters long, have atleast two alpha characters, and have three numeric characters."})
+		M.toast({html: "Course code must be at least 5 characters long, have at least two alpha characters, and have three numeric characters."})
 		event.preventDefault();
 		form.courseCode.focus();
 		return False;
@@ -53,7 +53,7 @@ function courseValidate(form) {
 
 	var courseName = form.courseName.value.trim();
 	if (courseName.length < 1) {
-		M.toast({html: "Course name must be atleast one character, please try again."})
+		M.toast({html: "Course name must be at least one character, please try again."})
 		event.preventDefault();
 		form.courseName.focus();
 		return False;
