@@ -41,7 +41,9 @@ async function createUser(username, firstName, lastName, password) {
 
     username = username.trim().toLowerCase();
     firstName = firstName.trim();
+    firstName = firstName.charAt(0).toUpperCase() + firstName.substr(1).toLowerCase();
     lastName = lastName.trim();
+    lastName = lastName.charAt(0).toUpperCase() + lastName.substr(1).toLowerCase();
 
     const userCollection = await users();
 

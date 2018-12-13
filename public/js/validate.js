@@ -33,7 +33,7 @@ function registerValidate(form) {
 		form.password.focus();
 		return False;
 	} else if (!(/(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[a-z])/.test(password)) || (password.length < 7)) {
-		M.toast({html: "Password must atleast 7 characters and have atleast one uppercase character, one lowercase character, and one number."})
+		M.toast({html: "Password must atleast 7 characters long, have atleast one uppercase character, one lowercase character, and one number."})
 		event.preventDefault();
 		form.password.focus();
 		return False;
@@ -43,5 +43,21 @@ function registerValidate(form) {
 }
 
 function courseValidate(form) {
+	var courseCode = form.courseCode.value.trim().toUpperCase();
+	if (!(/[A-Z]{2,}[0-9]{3}/.test(courseCode)) || (courseCode.length < 5)) {
+		M.toast({html: "Course code must atleast 5 characters long, have atleast two alpha characters, and have three numeric characters."})
+		event.preventDefault();
+		form.courseCode.focus();
+		return False;
+	}
+
+	var courseName = form.courseName.value.trim();
+	if (courseName.length < 1) {
+		M.toast({html: "Course name must be atleast one character, please try again."})
+		event.preventDefault();
+		form.courseName.focus();
+		return False;
+	}
+
 	return True;
 }

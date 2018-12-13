@@ -49,9 +49,7 @@ async function getCommentsByUserID(userID) {
 
     const commentCollection = await comments();
     const foundComment = await commentCollection.find({userID: userID}).toArray();
-
-    //if (foundComment.length === 0) throw "No comments exists associated with that user";
-
+    
     return foundComment;
 }
 

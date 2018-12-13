@@ -40,35 +40,3 @@ footer {
 	max-width: 80%;
 	margin: auto;
 }
-
-.user-info {
-	border: 0px;
-}
-
-.user-info th:nth-child(1) {
-	font-size: 24pt;
-	text-align: left;
-}
-
-.error {
-	border-radius: 5px;
-	padding: 10px;
-	background-color: #d14b4b;
-	color: white;
-	margin-bottom: 15px;
-}
-
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.closebtn:hover {
-  color: black;
-}

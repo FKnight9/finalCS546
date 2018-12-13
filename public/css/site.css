@@ -1,3 +1,8 @@
+body {
+	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	margin: auto;
+}
+
 .icon-block {
   padding: 0 15px;
 }

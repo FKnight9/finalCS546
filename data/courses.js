@@ -4,6 +4,12 @@ const courses = mongoCollections.courses;
 const commentsData = require("./comments");
 const uuidv4 = require('uuid/v4');
 
+function titleCase(str) {
+  return str.toLowerCase().split(' ').map(function(word) {
+    return (word.charAt(0).toUpperCase() + word.slice(1));
+  }).join(' ');
+}
+
 async function createCourse(courseCode, courseName) {
     if ((!courseCode) || (typeof courseCode !== "string")) throw "Course Code is invalid";
     if ((!courseName) || (typeof courseName !== "string")) throw "Course Name is invalid";
@@ -12,8 +18,8 @@ async function createCourse(courseCode, courseName) {
 
     let newCourse = {
         _id: uuidv4(),
-        courseCode: courseCode,
-        courseName: courseName
+        courseCode: courseCode.toUpperCase(),
+        courseName: titleCase(courseName)
     }
 
     const insertedCourse = await courseCollection.insertOne(newCourse);
