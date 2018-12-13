@@ -3,6 +3,8 @@ const mainRoute = require("./main");
 const courseRoute = require("./course");
 const coursesRoute = require("./courses");
 
+const commentRoute = require("./comment");
+
 const registerRoute = require("./register");
 const loginRoute = require("./login");
 const logoutRoute = require("./logout");
@@ -16,6 +18,8 @@ function constructorMethod(app) {
 
 	app.use("/courses", coursesRoute);
 	app.use("/courses/*", courseRoute);
+
+	app.use("/comment/*", commentRoute);
 
 	app.use("*", (req, res) => {
 		var data = {

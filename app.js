@@ -6,7 +6,15 @@ const configRoutes = require("./routes");
 
 const app = express();
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", exphbs({
+  defaultLayout: "main",
+  helpers: {
+    'ifEquals': function(arg1, arg2, options) {
+      return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+    }
+  }
+}));
+
 app.set("view engine", "handlebars");
 
 app.use(cookieParser());

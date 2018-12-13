@@ -38,7 +38,7 @@ async function getCommentByID(id) {
     const commentCollection = await comments();
     const foundComment = await commentCollection.findOne({_id: id});
 
-    if (foundComment === null) throw "No comment exists with that ID";
+    if (foundComment === null) return undefined;
 
     return foundComment;
 }
@@ -49,7 +49,7 @@ async function getCommentsByUserID(userID) {
 
     const commentCollection = await comments();
     const foundComment = await commentCollection.find({userID: userID}).toArray();
-    
+
     return foundComment;
 }
 

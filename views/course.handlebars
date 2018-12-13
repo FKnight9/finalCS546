@@ -22,18 +22,25 @@
      <button class="btn waves-effect waves-light orange darken-3" form="comment-form" type="submit" name="action" value="Submit">Submit</button>
    </form>
  </div>
-
  <div class="row valign-wrapper center-align">
    <ul class="row collection">
      {{#each comments}}
-      <li class="collection-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{this.userID}}: {{this.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+      <li class="collection-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{this.userID}}: {{this.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {{#ifEquals this.userID ../user.username}}
+          <a href="/comment/{{this._id}}" class="secondary-content"><i class="material-icons">close</i></a>
+        {{/ifEquals}}
+      </li>
      {{/each}}
    </ul>
  </div>
-
  <div class="row valign-wrapper center-align">
    <div class="row">
-     <button class="btn waves-effect waves-light orange darken-4" onclick="location.href='/logout';">Logout</button>
+     <div class="col s6">
+       <button class="btn waves-effect waves-light orange darken-3" onclick="location.href='/courses';">Courses</button>
+     </div>
+     <div class="col s6">
+       <button class="btn waves-effect waves-light orange darken-4" onclick="location.href='/logout';">Logout</button>
+     </div>
    </div>
  </div>
 </article>
