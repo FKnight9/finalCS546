@@ -44,7 +44,10 @@ function registerValidate(form) {
 
 function courseValidate(form) {
 	var courseCode = form.courseCode.value.trim().toUpperCase();
-	if (!(/[A-Z]{2,}[0-9]{3}/.test(courseCode)) || (courseCode.length <= 5)) {
+	console.log(courseCode)
+	console.log(/[A-Z]{2,}[0-9]{3}/.test(courseCode))
+	console.log(courseCode.length < 6)
+	if ((!(/[A-Z]{2,}[0-9]{3}/.test(courseCode))) || (courseCode.length < 5)) {
 		M.toast({html: "Course code must be at least 5 characters long, have at least two alpha characters, and have three numeric characters."})
 		event.preventDefault();
 		form.courseCode.focus();
